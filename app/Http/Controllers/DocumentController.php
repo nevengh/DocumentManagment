@@ -65,18 +65,19 @@ class DocumentController extends Controller
     public function update(UpdateDocumentRequest $request, Document $document)
     {
 
-        if ($request->hasFile('file_path')) {
-            $file = $request->file('file_path');
-            $fileName = $file->getClientOriginalName();
-            $file->move(public_path('files'), $fileName);
+        // if ($request->hasFile('file_path')) {
+        //     $file = $request->file('file_path');
+        //     $fileName = $file->getClientOriginalName();
+        //     $file->move(public_path('files'), $fileName);
 
-            // Update file path in the database
-            $document->file_path = $fileName;
-        }
+        //     // Update file path in the database
+        //     $document->file_path = $fileName;
+        // }
         $document->title = $request->input('title') ?? $document->title;
         $document->description = $request->input('description')?? $document->description;
         $document->user_id = $request->input('user_id')?? $document->user_id;
         $document->document_type_id = $request->input('document_type_id')??$document->document_type_id;
+        $document->file_path = $request->input('file_path')?? $document->file_path;
 
         $document->save();
 

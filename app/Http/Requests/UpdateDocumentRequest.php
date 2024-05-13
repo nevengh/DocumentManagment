@@ -25,7 +25,7 @@ class UpdateDocumentRequest extends FormRequest
             'title' => 'sometimes|string|max:50',
             'description' => 'sometimes|string|max:255',
             'file_path' => 'sometimes|file|mimes:pdf,doc,docx|max:2048',
-            'document_type_id' => 'exists:document_types,id',
+            'document_type_id' => 'nullable:document_type_id',
             'user_id' => 'nullable:user_id',
         ];
     }
